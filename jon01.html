@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Ball</title>
+</head>
+<body>
+
+    <style>
+        :root{
+            --color-primario:#8ace00;
+            --color-secundario: #0E1400;
+            --color-terceario: #E7FFAD;
+            --color-cuarto: #F8FFEB;
+            --color-quinto: #527A00;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            background-color: var(--color-primario);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin: 0;
+        }
+        header {
+            padding: 15px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background-color: var(--color-secundario);
+        }
+        .search{
+            background-color: var(--color-primario);
+            border: 2px solid var(--color-terceario);
+            border-radius: 50px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 15px;
+            padding: 8px 15px;
+            color: var(--color-terceario);
+        }
+        .search::placeholder{
+            color: var(--color-quinto);
+        }
+        .search:focus{
+            outline: none;
+            background-color: var(--color-quinto);
+        }
+        main{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .personaje{
+            width: 300px;
+            margin: 15px;
+            background-color: var(--color-secundario);
+            box-shadow: 0 5px 5px black;
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .personaje img{
+            width: 50%;
+            height: 350px;
+            object-fit: cover;
+        }
+        .personaje-info{
+            color: var(--color-terceario);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+        }
+        .personaje-info h3{
+            color: var(--color-primario);
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .personaje-info span.race {
+            font-size: 0.9rem;
+            color: var(--color-cuarto);
+            margin-top: 5px;
+        }
+        .descripcion{
+            background-color: var(--color-quinto);
+            color: var(--color-cuarto);
+            padding: 1rem;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            max-height: 100%; 
+            transform: translateY(101%);
+            overflow: auto;
+            transition: transform 0.3s ease-in;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .descripcion h3 {
+            color: var(--color-terceario);
+            margin-top: 0;
+        }
+        .personaje:hover .descripcion{
+            transform: translateY(0);
+        }
+    </style>
+
+    <header>
+        <img src="logo.jpg" alt="logo" style="width: 100px; margin-right: auto;"> <input type="text" id="search" class="search" placeholder="Buscar personajes">
+    </header>
+    <main id="main"></main>
+    
+    <script>
+        const API_URL = 'https://dragonball-api.com/api/characters';
+
+        const main = document.getElementById('main');
+        const form = document.getElementById('form');
+        const search = document.getElementById('search');
+
+        getDBZ(API_URL);
+
+        async function getDBZ(url) {
+            try {
+                const res = await fetch(url);
+                const data = await res.json();
+                showDBZ(data.items || data);
+            } catch (error) {
+                console.error("Error al obtener personajes:", error);
+                main.innerHTML = '<p>Error al cargar los personajes. Intenta de nuevo más tarde.</p>';
+            }
+        }
+
+        function showDBZ(personajes) {
+            main.innerHTML = '';
+            if (!personajes || personajes.length === 0) {
+                main.innerHTML = '<p>No se encontraron personajes.</p>';
+                return;
+            }
+
+            personajes.forEach((personaje) => {
+                const { name, image, ki, maxKi, description, race } = personaje;
+                
+                const personajeEl = document.createElement('div');
+                personajeEl.classList.add('personaje'); 
+                
+                personajeEl.innerHTML = `
+                    <img src="${image}" alt="${name}">
+                    <div class="personaje-info">
+                        <h3>${name}</h3>
+                        <span class="race">${race}</span>
+                    </div>
+                    <div class="descripcion">
+                        <h3>Descripción</h3>
+                        <p>${description || "Sin descripción disponible"}</p>
+                        <p><strong>Ki:</strong> ${ki} / ${maxKi}</p>
+                    </div>
+                `;
+                main.appendChild(personajeEl);
+            });
+        }
+
+
+        search.addEventListener('keypress', async (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const searchTerm = search.value.trim();
+                if (searchTerm) {
+                    try {
+                        const res = await fetch(`${API_URL}?name=${searchTerm}`);
+                        const data = await res.json();
+                        showDBZ(data.items || data); 
+                    } catch (error) {
+                        console.error("Error al buscar personajes:", error);
+                        main.innerHTML = '<p>Error al buscar personajes. Intenta de nuevo más tarde.</p>';
+                    }
+                    search.value = '';
+                } else {
+                    getDBZ(API_URL);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
