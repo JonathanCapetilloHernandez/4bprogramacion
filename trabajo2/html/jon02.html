@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Characters: Harry Potter & Rick and Morty</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">INICIO</a>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="unidad1.html" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">UNIDAD 1</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="../jon01.PHP">Practica 1</a><br>
+                                <a class="dropdown-item" href="../jon02.PHP">Practica 2</a><br>
+                                <a class="dropdown-item" href="../jon03.PHP">Practica 3</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="unidad2.html" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">UNIDAD 2</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="../jon04.PHP">Practica 4</a><br>
+                                <a class="dropdown-item" href="../jon05.PHP">Practica 5</a><br>
+                                <a class="dropdown-item" href="../jon06.PHP">Practica 6</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="unidad3.html" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">UNIDAD 3</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                             <a class="dropdown-item" href="../personajes.PHP">Practica 7</a><br>
+                             <a class="dropdown-item" href="jon01.html">Practica 8</a><br>
+                             <a class="dropdown-item" href="jon.html">Practica 9</a><br>
+                             <a class="dropdown-item" href="pokemon.html">Practica 10</a>
+                             <a class="dropdown-item" href="jon02.html">Practica 11</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <style>
+        :root{
+            --color-primario: #740001; /* Gryffindor red */
+            --color-secundario: #1A472A; /* Dark green for Hogwarts */
+            --color-terceario: #FFD700; /* Gryffindor gold */
+            --color-cuarto: #F5F5F5; /* Light grey for parchment-like text */
+            --color-quinto: #4A2C00; /* Brown for wand-like accents */
+        }
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            background-color: var(--color-primario);
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+        }
+        header{
+            padding: 15px;
+            display: flex;
+            justify-content: flex-end;
+            background-color: var(--color-secundario);
+        }
+        .search{
+            background-color: var(--color-primario);
+            border: 2px solid var(--color-terceario);
+            border-radius: 50px;
+            font-family: 'Georgia', serif;
+            font-size: 15px;
+            padding: 8px 15px;
+            color: var(--color-terceario);
+        }
+        .search::placeholder{
+            color: var(--color-quinto);
+        }
+        .search:focus{
+            outline: none;
+            background-color: var(--color-quinto);
+        }
+        main{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .personaje{
+            width: 400px;
+            margin: 15px;
+            background-color: var(--color-secundario);
+            box-shadow: 0 5px 5px black;
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .personaje img{
+            width: 80%;
+            height: 400px;
+            object-fit: contain;
+        }
+        .personaje-info{
+            color: var(--color-terceario);
+            display: flex;
+            align-content: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 15px 15px 15px;
+            letter-spacing: 3px;
+            text-align: center; 
+        }
+        .personaje-info h3{
+            color: var(--color-terceario);
+            margin-top: 0;
+        }
+        .overview{
+            background-color: var(--color-quinto);
+            color: var(--color-cuarto);
+            padding: 1rem;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            max-height: 100%; 
+            transform: translateY(101%);
+            overflow-y: auto;
+            transition: transform 0.3s ease-in;
+            text-align: center;
+        }
+        .overview h3 {
+            color: var(--color-terceario);
+            margin-top: 0;
+        }
+        .personaje:hover .overview{
+            transform: translateY(0);
+        }
+        .toggle-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .toggle-buttons button {
+            background-color: var(--color-quinto);
+            color: var(--color-cuarto);
+            border: 2px solid var(--color-terceario);
+            border-radius: 5px;
+            padding: 8px 16px;
+            font-family: 'Georgia', serif;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .toggle-buttons button:hover {
+            background-color: var(--color-terceario);
+            color: var(--color-secundario);
+        }
+        </style>
+        
+        <header>    
+            <form id="form">
+                <img src="logoputter.png" alt="Logo" style="width:100px;"/>
+                <input type="text" id="search" class="search" placeholder="Buscar personaje">
+            </form>
+        </header> 
+
+        <div class="toggle-buttons">
+            <button id="hp-toggle">Harry Potter</button>
+            <button id="rm-toggle">Rick and Morty</button>
+        </div>
+
+        <main id="main"></main>
+        
+        <script>
+        const HP_API_URL = 'https://hp-api.onrender.com/api/characters';
+        const RM_API_URL = 'https://rickandmortyapi.com/api/character';
+        const main = document.getElementById('main');
+        const form = document.getElementById('form');
+        const search = document.getElementById("search");
+        const hpToggle = document.getElementById('hp-toggle');
+        const rmToggle = document.getElementById('rm-toggle');
+
+        let currentAPI = 'hp';
+
+        function getCharacters(url, apiType) {
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    const characters = apiType === 'rm' ? data.results : data;
+                    showCharacters(characters, apiType);
+                })
+                .catch(error => {
+                    console.error("Error al obtener personajes:", error);
+                    main.innerHTML = '<p>Error al cargar los personajes. Intenta de nuevo más tarde.</p>';
+                });
+        }
+
+        function showCharacters(characters, apiType) {
+            main.innerHTML = '';
+            if (!characters || characters.length === 0) {
+                main.innerHTML = '<p>No se encontraron personajes.</p>';
+                return;
+            }
+
+            characters.forEach(character => {
+                let characterHTML = '';
+                if (apiType === 'hp') {
+                    const { name, image, house, wand, patronus } = character;
+                    const wandInfo = wand && wand.wood && wand.core ? `${wand.wood} con núcleo de ${wand.core}` : 'Desconocida';
+                    characterHTML = `
+                        <img src="${image || 'default_wizard.png'}" alt="${name}">
+                        <div class="personaje-info">
+                            <h3>${name}</h3>
+                            <span>Casa: ${house || 'Sin casa'}</span>
+                            <span>Patronus: ${patronus || 'Desconocido'}</span>
+                        </div>
+                        <div class="overview">
+                            <h3>Detalles</h3>
+                            <p><strong>Varita:</strong> ${wandInfo}</p>
+                            <p><strong>Casa:</strong> ${house || 'Sin casa'}</p>
+                        </div>`;
+                } else if (apiType === 'rm') {
+                    const { name, image, species, status, origin } = character;
+                    characterHTML = `
+                        <img src="${image || 'default_rickmorty.png'}" alt="${name}">
+                        <div class="personaje-info">
+                            <h3>${name}</h3>
+                            <span>Especie: ${species || 'Desconocida'}</span>
+                            <span>Estado: ${status || 'Desconocido'}</span>
+                        </div>
+                        <div class="overview">
+                            <h3>Detalles</h3>
+                            <p><strong>Origen:</strong> ${origin?.name || 'Desconocido'}</p>
+                            <p><strong>Especie:</strong> ${species || 'Desconocida'}</p>
+                        </div>`;
+                }
+                
+                const personajeElements = document.createElement('div');
+                personajeElements.classList.add('personaje');
+                personajeElements.innerHTML = characterHTML;
+                main.appendChild(personajeElements);
+            });
+        }
+
+        function loadInitialCharacters() {
+            getCharacters(HP_API_URL, 'hp');
+        }
+
+        loadInitialCharacters();
+
+        hpToggle.addEventListener('click', () => {
+            currentAPI = 'hp';
+            getCharacters(HP_API_URL, 'hp');
+        });
+
+        rmToggle.addEventListener('click', () => {
+            currentAPI = 'rm';
+            getCharacters(RM_API_URL, 'rm');
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const searchTerm = search.value.trim();
+            if (searchTerm && searchTerm !== '') {
+                if (currentAPI === 'hp') {
+                    getCharacters(HP_API_URL, 'hp');
+                } else {
+                    getCharacters(`${RM_API_URL}?name=${searchTerm}`, 'rm');
+                }
+                search.value = '';
+            } else {
+                getCharacters(currentAPI === 'hp' ? HP_API_URL : RM_API_URL, currentAPI);
+            }
+        });
+        </script>
+    </body>
+</html>
