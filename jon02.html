@@ -189,12 +189,19 @@
 
         let currentAPI = 'hp';
 
-        function getCharacters(url, apiType) {
+        function getCharacters(url, apiType, searchTerm = '') {
             fetch(url)
                 .then(res => res.json())
                 .then(data => {
                     const characters = apiType === 'rm' ? data.results : data;
-                    showCharacters(characters, apiType);
+                    if (apiType === 'hp' && searchTerm) {
+                        const filtered = characters.filter(character => 
+                            character.name.toLowerCase().includes(searchTerm.toLowerCase())
+                        );
+                        showCharacters(filtered, apiType);
+                    } else {
+                        showCharacters(characters, apiType);
+                    }
                 })
                 .catch(error => {
                     console.error("Error al obtener personajes:", error);
@@ -270,11 +277,10 @@
             const searchTerm = search.value.trim();
             if (searchTerm && searchTerm !== '') {
                 if (currentAPI === 'hp') {
-                    getCharacters(HP_API_URL, 'hp');
+                    getCharacters(HP_API_URL, 'hp', searchTerm);
                 } else {
                     getCharacters(`${RM_API_URL}?name=${searchTerm}`, 'rm');
                 }
-                search.value = '';
             } else {
                 getCharacters(currentAPI === 'hp' ? HP_API_URL : RM_API_URL, currentAPI);
             }
