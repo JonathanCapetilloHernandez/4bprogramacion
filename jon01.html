@@ -1,33 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dragon Ball</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dragonball</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">INICIO</a>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="unidad1.html" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">UNIDAD 1</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="../jon01.PHP">Practica 1</a><br>
+                                <a class="dropdown-item" href="../jon02.PHP">Practica 2</a><br>
+                                <a class="dropdown-item" href="../jon03.PHP">Practica 3</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="unidad2.html" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">UNIDAD 2</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="../jon04.PHP">Practica 4</a><br>
+                                <a class="dropdown-item" href="../jon05.PHP">Practica 5</a><br>
+                                <a class="dropdown-item" href="../jon06.PHP">Practica 6</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="unidad3.html" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">UNIDAD 3</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                             <a class="dropdown-item" href="../personajes.PHP">Practica 7</a><br>
+                             <a class="dropdown-item" href="jon01.html">Practica 8</a><br>
+                             <a class="dropdown-item" href="jon.html">Practica 9</a><br>
+                             <a class="dropdown-item" href="pokemon.html">Practica 10</a>
+                             <a class="dropdown-item" href="jon02.html">Practica 11</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-    <style>
+        <style>
         :root{
-            --color-primario:#8ace00;
+            --color-primario: #8ace00;
             --color-secundario: #0E1400;
             --color-terceario: #E7FFAD;
             --color-cuarto: #F8FFEB;
             --color-quinto: #527A00;
         }
-        * {
+        *{
             box-sizing: border-box;
         }
-        body {
+        body{
             background-color: var(--color-primario);
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             margin: 0;
         }
-        header {
+        header{
             padding: 15px;
             display: flex;
             justify-content: flex-end;
-            align-items: center;
             background-color: var(--color-secundario);
         }
         .search{
@@ -50,10 +88,9 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            padding: 20px;
         }
         .personaje{
-            width: 300px;
+            width: 400px;
             margin: 15px;
             background-color: var(--color-secundario);
             box-shadow: 0 5px 5px black;
@@ -66,31 +103,25 @@
             align-items: center;
         }
         .personaje img{
-            width: 50%;
-            height: 350px;
-            object-fit: cover;
+            width: 80%;
+            height: 400px;
+            object-fit: contain;
         }
         .personaje-info{
             color: var(--color-terceario);
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-            text-align: center;
-            width: 100%;
+            align-content: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 15px 15px 15px;
+            letter-spacing: 5px;
+            text-align: center; 
         }
         .personaje-info h3{
-            color: var(--color-primario);
-            margin: 0;
-            font-size: 1.5rem;
+            color: var(--color-terceario);
+            margin-top: 0;
         }
-        .personaje-info span.race {
-            font-size: 0.9rem;
-            color: var(--color-cuarto);
-            margin-top: 5px;
-        }
-        .descripcion{
+        .overview{
             background-color: var(--color-quinto);
             color: var(--color-cuarto);
             padding: 1rem;
@@ -100,35 +131,37 @@
             right: 0;
             max-height: 100%; 
             transform: translateY(101%);
-            overflow: auto;
+            overflow-y: auto;
             transition: transform 0.3s ease-in;
             text-align: center;
-            box-sizing: border-box;
         }
-        .descripcion h3 {
+        .overview h3 {
             color: var(--color-terceario);
             margin-top: 0;
         }
-        .personaje:hover .descripcion{
+        .personaje:hover .overview{
             transform: translateY(0);
         }
-    </style>
+        </style>
+        
+        <header>    
+            <form id="form">
+                <img src="logo.jpg" alt="logo" style="width:100px;"/>
+                <input type="text" id="search" class="search" placeholder="Buscar personaje">
+            </form>
+        </header> 
 
-    <header>
-        <img src="logo.jpg" alt="logo" style="width: 100px; margin-right: auto;"> <input type="text" id="search" class="search" placeholder="Buscar personajes">
-    </header>
-    <main id="main"></main>
-    
-    <script>
+        <main id="main"></main>
+        
+        <script>
         const API_URL = 'https://dragonball-api.com/api/characters';
-
         const main = document.getElementById('main');
         const form = document.getElementById('form');
-        const search = document.getElementById('search');
+        const search = document.getElementById("search");
 
         getDBZ(API_URL);
 
-        async function getDBZ(url) {
+        async function getDBZ(url){
             try {
                 const res = await fetch(url);
                 const data = await res.json();
@@ -139,55 +172,43 @@
             }
         }
 
-        function showDBZ(personajes) {
+        function showDBZ(personajes){
             main.innerHTML = '';
             if (!personajes || personajes.length === 0) {
                 main.innerHTML = '<p>No se encontraron personajes.</p>';
                 return;
             }
 
-            personajes.forEach((personaje) => {
-                const { name, image, ki, maxKi, description, race } = personaje;
+            personajes.forEach(personaje => {
+                const {name, image, ki, maxKi, description, race} = personaje;
                 
-                const personajeEl = document.createElement('div');
-                personajeEl.classList.add('personaje'); 
-                
-                personajeEl.innerHTML = `
+                const personajeElements = document.createElement('div');
+                personajeElements.classList.add('personaje');
+                personajeElements.innerHTML = `
                     <img src="${image}" alt="${name}">
                     <div class="personaje-info">
                         <h3>${name}</h3>
-                        <span class="race">${race}</span>
+                        <span>Ki: ${ki}</span>
+                        <span>Max Ki: ${maxKi}</span>
                     </div>
-                    <div class="descripcion">
-                        <h3>Descripción</h3>
+                    <div class="overview">
+                        <h3>Race: ${race}</h3>
                         <p>${description || "Sin descripción disponible"}</p>
-                        <p><strong>Ki:</strong> ${ki} / ${maxKi}</p>
-                    </div>
-                `;
-                main.appendChild(personajeEl);
+                    </div>`;
+                main.appendChild(personajeElements);
             });
         }
 
-
-        search.addEventListener('keypress', async (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                const searchTerm = search.value.trim();
-                if (searchTerm) {
-                    try {
-                        const res = await fetch(`${API_URL}?name=${searchTerm}`);
-                        const data = await res.json();
-                        showDBZ(data.items || data); 
-                    } catch (error) {
-                        console.error("Error al buscar personajes:", error);
-                        main.innerHTML = '<p>Error al buscar personajes. Intenta de nuevo más tarde.</p>';
-                    }
-                    search.value = '';
-                } else {
-                    getDBZ(API_URL);
-                }
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const searchTerm = search.value.trim();
+            if (searchTerm && searchTerm !== ''){
+                getDBZ(API_URL + '?name=' + searchTerm);
+                search.value = '';
+            } else {
+                getDBZ(API_URL);
             }
         });
-    </script>
-</body>
+        </script>
+    </body>
 </html>
